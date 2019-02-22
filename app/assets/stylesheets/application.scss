@@ -13,6 +13,8 @@ img {
 img:hover {
     box-shadow: 10px 10px 7px #cc8080;
 }
+@import "bootstrap-sprockets";
+@import "bootstrap";
 /*
  * This is a manifest file that'll be compiled into application.css, which will include all the files
  * listed below.

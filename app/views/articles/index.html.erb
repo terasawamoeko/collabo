@@ -1,0 +1,78 @@
+<ul class="nav nav-tabs">
+	<li role="presentation" class="active"><a href="#">ホーム</a></li>
+	<li role="presentation"><a href="#">メニューＡ</a></li>
+	<li role="presentation"><a href="#">メニューＢ</a></li>
+</ul>
+
+<div class="container-fluid">
+	<div class="row">
+		<div class="col-md-4">
+			<h1>新規投稿</h1>
+<%= form_for(@article) do |f| %>
+ 
+    <h4>タイトル</h4>
+    <%= f.text_field :title %>
+ 
+    <h4>本文</h4>
+    <%= f.text_area :body %>
+
+
+    <h4>天気</h4>
+    <%= f.text_area :weather %>
+
+    <h4>画像</h4>
+    <%= f.attachment_field :image %>
+
+    <%= f.submit '投稿' %>
+ 
+<% end %>
+		</div>
+		<div class="col-md-8">
+			<h1>投稿一覧</h1>
+			<table class="table">
+	<thead>
+	<tr>
+		<th>タイトル</th>
+		<th>天気</th>
+		<th>本文</th>
+		<th>投稿した時間</th>
+	</tr>
+</thead>
+<tbody>
+	<% @articles.each do |article| %>
+
+	<tr>
+		<td>
+			<p>
+				<%=link_to article.title, "/articles/#{article.id}" %>
+			</p>
+		</td>
+		<td>
+			<p>
+				<%=link_to article.weather, "/articles/#{article.id}" %>
+			</p>
+		</td>
+		<td>
+			<p>
+				<%=link_to article.body, "/articles/#{article.id}" %>
+			</p>
+		</td>
+		<td>
+			<p>
+				<%=link_to article.created_at, "/articles/#{article.id}" %>
+			</p>
+		</td>
+		<td>
+		    <p>
+                <%= attachment_image_tag article, :image, :fill, 100, 100, format: 'jpeg' %>
+            </p>
+        </td>
+	</tr>
+    <% end %>
+	</tbody>
+	</table>
+   
+	</div>
+</div>
+</div>
+
